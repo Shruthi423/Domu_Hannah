@@ -4,27 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Domu · Hannah Intelligence Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* Helvetica Neue (self-hosted .woff2 — renders identically on every OS/browser) */
+@font-face{font-family:'Helvetica Neue';src:url('fonts/HelveticaNeue-Roman.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Helvetica Neue';src:url('fonts/HelveticaNeue-Medium.woff2') format('woff2');font-weight:500 600;font-style:normal;font-display:swap;}
+@font-face{font-family:'Helvetica Neue';src:url('fonts/HelveticaNeue-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
 :root {
-  --blue:#014BAA;--blue-07:rgba(1,75,170,0.07);--blue-12:rgba(1,75,170,0.12);--blue-20:rgba(1,75,170,0.20);
-  --cream:#F8F3F0;--bg:var(--cream);--surface:#FFFFFF;--surface-2:rgba(1,75,170,0.04);
-  --border:rgba(1,75,170,0.12);--border-2:rgba(1,75,170,0.20);
-  --ink:#0D1B3E;--ink-2:#4A5A7A;--ink-3:#8A97B0;--ink-4:#BEC7D8;
+  --blue:#334EAC;--blue-07:rgba(51,78,172,0.07);--blue-12:rgba(51,78,172,0.12);--blue-20:rgba(51,78,172,0.22);
+  --blue-2:#7096D1;--blue-soft:#D0E3FF;--blue-sky:#BAD6EB;--blue-pale:#EDF1F6;
+  --cream:#FFF9F0;--bg:var(--cream);--surface:#FFFFFF;--surface-2:rgba(8,31,92,0.04);
+  --border:rgba(8,31,92,0.10);--border-2:rgba(8,31,92,0.18);
+  --ink:#081F5C;--ink-2:#3D4D77;--ink-3:#5A6A92;--ink-4:#94A0BF;
   --green:#146C3C;--green-bg:#F0FDF4;--green-border:rgba(20,108,60,0.2);
   --amber:#B45309;--amber-bg:#FFFBEB;--amber-border:rgba(180,83,9,0.2);
   --red:#C41C1C;--red-bg:#FEF2F2;--red-border:rgba(196,28,28,0.2);
-  --serif:'EB Garamond',Georgia,serif;--sans:'Figtree',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+  --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;--serif:var(--sans);--mono:'JetBrains Mono',monospace;
   --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;--s12:48px;
   --ease-out:cubic-bezier(0.2,0,0,1.0);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{font-size:13px;}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;min-height:100vh;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:-0.006em;}
+
+/* Inline icon system (Phosphor) */
+.ic{display:inline-block;vertical-align:-0.16em;flex-shrink:0;fill:currentColor;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px;}
 
 .nav{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--s10);}
 .nav-left{display:flex;align-items:center;gap:var(--s3);}
-.nav-logo{width:28px;height:28px;background:var(--blue);border-radius:6px;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em;flex-shrink:0;}
+.nav-logo{width:28px;height:28px;overflow:hidden;flex-shrink:0;display:block;}
+.nav-logo img{width:100%;height:100%;object-fit:cover;display:block;}
 .nav-name{font-size:14px;font-weight:600;color:var(--ink);}
 .nav-sep{width:1px;height:18px;background:var(--border-2);}
 .nav-context{font-size:12px;color:var(--ink-2);display:flex;align-items:center;gap:var(--s2);}
@@ -39,7 +50,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 
 .page-header{padding:var(--s8) var(--s10) var(--s6);}
 .page-header-row{display:flex;align-items:flex-end;justify-content:space-between;}
-.page-title{font-family:var(--serif);font-size:36px;line-height:44px;font-weight:400;color:var(--ink);}
+.page-title{font-family:var(--sans);font-size:32px;line-height:1.12;font-weight:500;letter-spacing:-0.021em;color:var(--ink);}
 .page-sub{font-size:12px;color:var(--ink-3);margin-top:4px;}
 
 .time-selector{display:flex;gap:2px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2px;}
@@ -50,7 +61,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 /* Custom date modal */
 .date-modal-overlay{position:fixed;inset:0;background:rgba(13,27,62,.12);z-index:300;display:none;place-items:center;}
 .date-modal-overlay.open{display:grid;}
-.date-modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:var(--s6);width:320px;box-shadow:0 8px 32px rgba(1,75,170,.1);}
+.date-modal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:var(--s6);width:320px;box-shadow:0 8px 32px rgba(8,31,92,.1);}
 .date-modal-title{font-size:14px;font-weight:600;margin-bottom:var(--s4);}
 .date-modal-row{display:flex;gap:var(--s3);margin-bottom:var(--s4);}
 .date-modal-row label{font-size:11px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px;flex:1;}
@@ -74,7 +85,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .flow-wrap{padding:0 var(--s10) var(--s10);}
 .flow-grid{display:grid;grid-template-columns:1fr 320px;gap:var(--s6);}
 .flow-canvas{position:relative;}
-.flow-canvas-inner{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:var(--s8) var(--s4);display:flex;flex-direction:column;align-items:center;gap:0;min-height:580px;position:relative;}
+.flow-canvas-inner{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:var(--s8) var(--s4) var(--s10);display:flex;flex-direction:column;align-items:center;gap:0;position:relative;}
 .flow-controls{margin-bottom:var(--s4);}
 .flow-legend{display:flex;gap:var(--s2);flex-wrap:wrap;align-items:center;}
 .legend-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
@@ -96,7 +107,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .fn:nth-child(1){animation-delay:60ms}.fn:nth-child(2){animation-delay:120ms}.fn:nth-child(3){animation-delay:180ms}.fn:nth-child(4){animation-delay:240ms}.fn:nth-child(5){animation-delay:300ms}.fn:nth-child(6){animation-delay:360ms}
 .fn-connector{width:1px;height:28px;background:var(--border-2);}
 .fn-body{border:1.5px solid var(--border);border-radius:8px;padding:10px 24px;text-align:center;min-width:200px;background:var(--surface);transition:border-color 100ms,box-shadow 100ms;position:relative;}
-.fn:hover .fn-body{border-color:var(--blue-20);box-shadow:0 1px 8px rgba(1,75,170,0.08);}
+.fn:hover .fn-body{border-color:var(--blue-20);box-shadow:0 1px 8px rgba(8,31,92,0.08);}
 .fn.sel .fn-body{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-07);}
 .fn-body.guardrail{border-color:var(--amber-border);background:var(--amber-bg);}
 /* compliance class no longer changes background — badge handles the signal */
@@ -147,7 +158,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .issue-see-calls{font-size:11px;font-weight:600;color:var(--amber);background:none;border:1px solid var(--amber-border);border-radius:5px;padding:3px 10px;cursor:pointer;font-family:var(--sans);transition:all 100ms;}
 .issue-see-calls:hover{background:rgba(180,83,9,.1);}
 .issue-tooltip-wrap{position:relative;display:flex;align-items:center;}
-.issue-info-icon{width:18px;height:18px;border-radius:50%;border:1px solid var(--amber-border);display:grid;place-items:center;font-size:10px;color:var(--amber);cursor:default;user-select:none;font-style:normal;}
+.issue-info-icon{width:18px;height:18px;display:grid;place-items:center;color:var(--amber);cursor:help;user-select:none;}
 .issue-tooltip{position:absolute;right:0;bottom:calc(100% + 6px);background:var(--ink);color:#fff;font-size:11px;line-height:1.5;padding:7px 10px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity 150ms;z-index:999;width:260px;white-space:normal;}
 .issue-tooltip-wrap:hover .issue-tooltip{opacity:1;}
 
@@ -156,7 +167,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .metric.hero{border-color:var(--green-border);background:var(--green-bg);}
 .metric-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;}
 .metric.hero .metric-label{color:var(--green);}
-.metric-val{font-family:var(--mono);font-size:28px;font-weight:500;color:var(--ink);line-height:1;margin-bottom:4px;}
+.metric-val{font-family:var(--mono);font-size:28px;font-weight:500;color:var(--ink);line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;}
 .metric-delta{font-size:11px;color:var(--ink-2);}
 .metric-delta.g{color:var(--green);}.metric-delta.r{color:var(--red);}.metric-delta.w{color:var(--amber);}
 .metric-spark{position:absolute;bottom:8px;right:8px;opacity:.45;}
@@ -174,7 +185,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .clickable-pattern:hover .esc-name{color:var(--blue);}
 
 .search-bar{display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s4);}
-.search-input{flex:1;padding:8px 12px 8px 32px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:var(--sans);color:var(--ink);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A97B0' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 10px center;transition:border-color 100ms;}
+.search-input{flex:1;padding:8px 12px 8px 32px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:var(--sans);color:var(--ink);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235A6A92' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 10px center;transition:border-color 100ms;}
 .search-input:focus{outline:none;border-color:var(--blue-20);}
 .search-input::placeholder{color:var(--ink-4);}
 
@@ -199,23 +210,25 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .pagination-btn:disabled{opacity:.3;cursor:default;}
 
 /* PANEL */
+.panel-clip{position:fixed;inset:0;z-index:200;overflow:hidden;pointer-events:none;transform:translateZ(0);}
+.panel{pointer-events:auto;}
 .overlay{position:fixed;inset:0;background:rgba(13,27,62,.06);z-index:200;opacity:0;pointer-events:none;transition:opacity 200ms var(--ease-out);}
 .overlay.open{opacity:1;pointer-events:auto;}
-.panel{position:fixed;top:0;right:0;bottom:0;width:520px;background:var(--surface);border-left:1px solid var(--border);box-shadow:-8px 0 32px rgba(1,75,170,.06);z-index:201;transform:translateX(100%);transition:transform 300ms var(--ease-out);display:flex;flex-direction:column;}
+.panel{position:fixed;top:0;right:0;bottom:0;width:520px;background:var(--surface);border-left:1px solid var(--border);box-shadow:-8px 0 32px rgba(8,31,92,.06);z-index:201;transform:translateX(100%);transition:transform 300ms var(--ease-out);display:flex;flex-direction:column;}
 .panel.open{transform:translateX(0);}
 .panel-hdr{padding:var(--s5);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0;}
-.panel-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);line-height:1.2;}
+.panel-title{font-family:var(--sans);font-size:20px;font-weight:500;letter-spacing:-0.014em;color:var(--ink);line-height:1.2;}
 .panel-meta{font-size:11px;color:var(--ink-3);margin-top:3px;font-family:var(--mono);}
 .panel-nav{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--ink-2);display:grid;place-items:center;font-size:13px;transition:all 100ms;}
 .panel-nav:hover{background:var(--blue-07);color:var(--ink);}
 .panel-nav:disabled{opacity:.3;cursor:default;pointer-events:none;}
-.panel-nav-count{font-size:11px;color:var(--ink-3);font-family:var(--mono);min-width:32px;text-align:center;}
+.panel-nav-count{font-size:11px;color:var(--ink-3);font-family:var(--mono);font-variant-numeric:tabular-nums;width:52px;text-align:center;flex-shrink:0;}
 .panel-close{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--ink-2);display:grid;place-items:center;font-size:14px;transition:all 100ms;flex-shrink:0;}
 .panel-close:hover{background:var(--blue-07);color:var(--ink);}
 .panel-body{flex:1;overflow-y:auto;padding:var(--s5);}
 .panel-footer{padding:var(--s4) var(--s5);border-top:1px solid var(--border);display:flex;flex-direction:column;gap:var(--s2);flex-shrink:0;}
 
-.verdict{padding:var(--s4) var(--s5);border-radius:8px;font-family:var(--serif);font-size:16px;font-weight:400;font-style:italic;line-height:1.5;margin-bottom:var(--s4);}
+.verdict{padding:var(--s4) var(--s5);border-radius:8px;font-family:var(--sans);font-size:15px;font-weight:500;line-height:1.55;letter-spacing:-0.005em;margin-bottom:var(--s4);}
 .verdict.ok{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
 .verdict.watch{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);}
 .verdict.bad{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);}
@@ -250,25 +263,108 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .tl-card.comp{border-color:var(--amber-border);background:var(--amber-bg);}
 .tl-card.sys{background:transparent;border:none;padding:2px 0;margin-bottom:6px;}
 .tl-meta{display:flex;align-items:center;gap:var(--s2);margin-bottom:3px;}
-.tl-time{font-family:var(--mono);font-size:9px;color:var(--ink-3);}
+.tl-time{font-family:var(--mono);font-size:10px;color:var(--ink-3);}
 .tl-stage{font-size:11px;font-weight:600;color:var(--ink);}
-.tl-spk{font-size:9px;color:var(--ink-3);margin-left:auto;font-family:var(--mono);}
+.tl-spk{font-size:10px;color:var(--ink-3);margin-left:auto;font-family:var(--mono);}
 .tl-text{font-size:12px;color:var(--ink);line-height:1.5;}
-.tl-text.bot{color:#014BAA;}.tl-text.sys{color:var(--ink-3);font-style:italic;font-size:11px;}
+.tl-text.bot{color:var(--blue);}.tl-text.sys{color:var(--ink-3);font-style:italic;font-size:11px;}
 .tl-prov{display:flex;align-items:center;gap:4px;margin-top:6px;padding:4px 8px;background:var(--surface-2);border-radius:4px;font-size:10px;color:var(--ink-3);}
-.tl-flag{display:flex;gap:4px;margin-top:6px;padding:5px 8px;background:var(--red-bg);border-radius:4px;font-size:10px;color:var(--red);line-height:1.4;border:1px solid var(--red-border);}
+.tl-flag{display:flex;align-items:flex-start;gap:5px;margin-top:6px;padding:5px 8px;background:var(--red-bg);border-radius:4px;font-size:10px;color:var(--red);line-height:1.4;border:1px solid var(--red-border);}
+.tl-flag .ic,.tl-prov .ic{margin-top:1px;}
 
 .abtn{display:flex;align-items:center;gap:var(--s2);padding:9px 14px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;width:100%;text-align:left;border:1px solid var(--border);background:none;color:var(--ink);transition:all 100ms;font-family:var(--sans);}
 .abtn:hover{background:var(--blue-07);}
 .abtn.primary{background:var(--blue);color:#fff;border-color:var(--blue);}
 .abtn.primary:hover{opacity:.9;}
 .abtn.danger{background:var(--red-bg);color:var(--red);border-color:var(--red-border);}
+.abtn.reviewed{background:var(--green-bg);color:var(--green);border-color:var(--green-border);}
+.abtn.reviewed:hover{opacity:.9;background:var(--green-bg);}
+.reviewed-ts{font-size:10px;color:var(--ink-3);margin-top:2px;text-align:center;display:none;}
+.reviewed-ts.show{display:block;}
+
+/* Chart modal */
+.chart-modal-overlay{position:fixed;inset:0;background:rgba(13,27,62,.18);z-index:300;display:none;place-items:center;backdrop-filter:blur(2px);}
+.chart-modal-overlay.open{display:grid;}
+.chart-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:640px;box-shadow:0 12px 48px rgba(8,31,92,.12);overflow:hidden;animation:modalIn 200ms var(--ease-out);}
+@keyframes modalIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.chart-modal-header{display:flex;align-items:center;justify-content:space-between;padding:var(--s5) var(--s6);border-bottom:1px solid var(--border);}
+.chart-modal-title{font-size:14px;font-weight:600;color:var(--ink);}
+.chart-modal-close{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--ink-2);display:grid;place-items:center;font-size:14px;transition:all 100ms;}
+.chart-modal-close:hover{background:var(--blue-07);color:var(--ink);}
+.chart-modal-body{padding:var(--s6);}
+.chart-svg{width:100%;height:220px;}
+.chart-axis-label{font-size:9px;fill:var(--ink-3);font-family:var(--mono);}
+.chart-grid-line{stroke:var(--border);stroke-width:0.5;}
+.chart-line{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.chart-dot{r:3.5;fill:var(--surface);stroke-width:2;cursor:pointer;transition:r 100ms;}
+.chart-dot:hover{r:5.5;}
+.chart-tooltip{position:absolute;background:var(--ink);color:#fff;font-size:11px;padding:5px 10px;border-radius:5px;pointer-events:none;opacity:0;transition:opacity 100ms;font-family:var(--mono);white-space:nowrap;z-index:10;}
+.chart-summary{display:flex;gap:var(--s6);padding-top:var(--s4);border-top:1px solid var(--border);margin-top:var(--s4);}
+.chart-summary-item{font-size:11px;color:var(--ink-2);}
+.chart-summary-item strong{color:var(--ink);font-family:var(--mono);}
+
+/* Audio player */
+.audio-player{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:var(--s4);display:flex;align-items:center;gap:var(--s3);}
+.audio-play-btn{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;font-size:12px;flex-shrink:0;transition:opacity 100ms;}
+.audio-play-btn:hover{opacity:.85;}
+.audio-wave-wrap{flex:1;display:flex;flex-direction:column;gap:4px;}
+.audio-waveform{display:flex;align-items:center;gap:1.5px;height:28px;cursor:pointer;}
+.audio-bar{width:2.5px;border-radius:1.5px;background:var(--blue-20);transition:background 100ms;}
+.audio-bar.played{background:var(--blue);}
+.audio-time-row{display:flex;justify-content:space-between;font-size:9px;font-family:var(--mono);color:var(--ink-3);}
+
+/* Actionable recommendations */
+.handoff-rec{display:flex;align-items:flex-start;gap:6px;margin-top:6px;padding:6px 10px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:5px;font-size:10px;color:var(--red);line-height:1.5;}
+.handoff-rec-icon{flex-shrink:0;font-size:12px;margin-top:1px;}
+.handoff-ok-footer{display:flex;align-items:center;gap:6px;margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--border);font-size:11px;color:var(--green);font-weight:500;}
+
+/* Metric card clickable */
+.metric.clickable{cursor:pointer;transition:border-color 100ms,box-shadow 100ms;}
+.metric.clickable:hover{border-color:var(--blue-20);box-shadow:0 2px 8px rgba(8,31,92,.06);}
+.metric-expand-hint{position:absolute;top:8px;right:8px;font-size:9px;color:var(--ink-4);opacity:0;transition:opacity 100ms;}
+.metric.clickable:hover .metric-expand-hint{opacity:1;}
+
+/* ── RESPONSIVE ── */
+.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+@media (max-width:860px){html,body{overflow-x:hidden;}}
+@media (max-width:1100px){
+  .flow-grid{grid-template-columns:1fr;}
+  .metric-row{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:860px){
+  .nav{height:auto;flex-wrap:wrap;gap:var(--s2);padding:10px var(--s5);}
+  .nav-tabs{order:3;width:100%;justify-content:center;}
+  .page-header{padding:var(--s6) var(--s5) var(--s4);}
+  .page-header-row{flex-direction:column;align-items:flex-start;gap:var(--s4);}
+  .time-selector{flex-wrap:wrap;}
+  .page-title{font-size:28px;line-height:34px;}
+  .flow-wrap,.ops-wrap{padding:0 var(--s5) var(--s6);}
+  .flow-grid,.flow-canvas{min-width:0;}
+  .flow-canvas-inner{padding-left:var(--s3);padding-right:var(--s3);}
+  .fn{width:100%;}
+  .fn-body,.fn-body.sm{min-width:0;width:100%;}
+  .canvas-key{position:static;align-self:flex-end;flex-direction:row;flex-wrap:wrap;margin-bottom:var(--s3);}
+  .outcome-groups{grid-template-columns:1fr;}
+  .handoff-grid{grid-template-columns:1fr;gap:var(--s5)!important;}
+  .flow-legend{gap:var(--s2);}
+  .legend-hint{margin-left:0;width:100%;}
+  .panel{width:100%;}
+  .ct{min-width:580px;}
+  .chart-modal{width:92vw;}
+}
+@media (max-width:540px){
+  .metric-row{grid-template-columns:1fr;}
+  .nav-context{display:none;}
+  .nav-name{font-size:13px;}
+  .page-title{font-size:24px;line-height:30px;}
+  .panel-footer .abtn{font-size:11px;}
+}
 </style>
 </head>
 <body>
 <nav class="nav">
   <div class="nav-left">
-    <div class="nav-logo">D</div>
+    <div class="nav-logo"><img src="logo.png" alt="Domu"></div>
     <span class="nav-name">Domu</span>
     <div class="nav-sep"></div>
     <div class="nav-context"><div class="nav-dot"></div>Hannah · First Financial Credit Union</div>
@@ -303,18 +399,18 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
           <div class="canvas-key">
             <div class="canvas-key-item"><div class="ck-dot" style="background:var(--green)"></div>Enabled</div>
             <div class="canvas-key-item"><div class="ck-dot" style="background:var(--ink-4)"></div>Disabled</div>
-            <div class="canvas-key-item"><span style="font-size:10px;color:var(--amber);">⚠</span>Compliance rule</div>
+            <div class="canvas-key-item"><span style="color:var(--amber);display:inline-flex;"><i data-icon="warning" data-size="12"></i></span>Compliance rule</div>
           </div>
           <div class="fn" onclick="selectNode('start',event)">
             <div class="fn-body" style="border-color:var(--blue);background:var(--blue-07)"><div class="fn-status on"></div><div class="fn-label" style="color:var(--blue)">Inbound Call</div><div class="fn-sub">PSTN to Domu Voice Platform</div><div class="fn-stat"><span class="tag tag-blue">~2,400 / day</span></div></div>
           </div>
           <div class="fn-connector"></div>
           <div class="fn" onclick="selectNode('greeting',event)">
-            <div class="fn-body"><div class="fn-status on"></div><div class="fn-label">Greeting + Disclosure</div><div class="fn-sub">Introduces Hannah · Spanish option · Recording consent</div><div class="fn-compliance-badge">⚠</div></div>
+            <div class="fn-body"><div class="fn-status on"></div><div class="fn-label">Greeting + Disclosure</div><div class="fn-sub">Introduces Hannah · Spanish option · Recording consent</div><div class="fn-compliance-badge"><i data-icon="warning" data-size="13"></i></div></div>
           </div>
           <div class="fn-connector"></div>
           <div class="fn sel" onclick="selectNode('verify',event)">
-            <div class="fn-body"><div class="fn-status on"></div><div class="fn-label">Identity Verification</div><div class="fn-sub">Name · DOB · SSN Last 4 · Zip · all 4 required</div><div class="fn-compliance-badge">⚠</div></div>
+            <div class="fn-body"><div class="fn-status on"></div><div class="fn-label">Identity Verification</div><div class="fn-sub">Name · DOB · SSN Last 4 · Zip · all 4 required</div><div class="fn-compliance-badge"><i data-icon="warning" data-size="13"></i></div></div>
           </div>
           <div class="fn-connector"></div>
           <div class="fn" onclick="selectNode('intent',event)">
@@ -336,7 +432,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
               <div class="outcome-group" data-group="intended">
                 <div class="outcome-group-header">Hannah assists, then transfers · 2</div>
                 <div class="outcome-group-items">
-                  <div class="fn outcome-node" data-group="intended" onclick="selectNode('channel',event)"><div class="fn-body sm handoff"><div class="fn-status on"></div><div class="fn-label" style="color:var(--blue)">Channel Boundary</div><div class="fn-sub">PCI · card entry</div><div class="fn-compliance-badge">⚠</div></div></div>
+                  <div class="fn outcome-node" data-group="intended" onclick="selectNode('channel',event)"><div class="fn-body sm handoff"><div class="fn-status on"></div><div class="fn-label" style="color:var(--blue)">Channel Boundary</div><div class="fn-sub">PCI · card entry</div><div class="fn-compliance-badge"><i data-icon="warning" data-size="13"></i></div></div></div>
                   <div class="fn outcome-node" data-group="intended" onclick="selectNode('contract',event)"><div class="fn-body sm handoff"><div class="fn-status on"></div><div class="fn-label" style="color:var(--blue)">Contract Ambiguity</div><div class="fn-sub">Human judgment</div></div></div>
                 </div>
               </div>
@@ -381,44 +477,48 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
           <div class="issue-list-dot red"></div>
           <div class="issue-list-text"><span class="issue-list-label" style="color:var(--red);">38 card-update transfers today</span><span class="issue-list-delta" style="color:var(--red);">· up from 12 yesterday</span></div>
           <div class="issue-list-actions">
-            <button class="issue-see-calls" style="color:var(--red);border-color:var(--red-border);" onclick="filterTable('Repeated Request',true)">See calls ↓</button>
-            <div class="issue-tooltip-wrap"><div class="issue-info-icon" style="color:var(--red);border-color:var(--red-border);">ⓘ</div><div class="issue-tooltip">Check if a recent policy change is driving more card update requests</div></div>
+            <button class="issue-see-calls" style="color:var(--red);border-color:var(--red-border);" onclick="filterTable('Repeated Request',true)">See calls <i data-icon="arrow-down" data-size="12"></i></button>
+            <div class="issue-tooltip-wrap"><div class="issue-info-icon" style="color:var(--red);"><i data-icon="info" data-size="15"></i></div><div class="issue-tooltip">Check if a recent policy change is driving more card update requests</div></div>
           </div>
         </div>
         <div class="issue-list-row">
           <div class="issue-list-dot amber"></div>
           <div class="issue-list-text"><span class="issue-list-label">Verification pass rate dipped to 91.2%</span><span class="issue-list-delta">· below 94% baseline</span></div>
           <div class="issue-list-actions">
-            <button class="issue-see-calls" onclick="filterVerified()">See calls ↓</button>
-            <div class="issue-tooltip-wrap"><div class="issue-info-icon">ⓘ</div><div class="issue-tooltip">Could indicate customers struggling with DOB or SSN entry</div></div>
+            <button class="issue-see-calls" onclick="filterVerified()">See calls <i data-icon="arrow-down" data-size="12"></i></button>
+            <div class="issue-tooltip-wrap"><div class="issue-info-icon"><i data-icon="info" data-size="15"></i></div><div class="issue-tooltip">Could indicate customers struggling with DOB or SSN entry</div></div>
           </div>
         </div>
       </div>
 
       <div class="metric-row">
-        <div class="metric hero">
+        <div class="metric hero clickable" onclick="openChart('resolution')">
           <div class="metric-label">Resolution Rate</div>
           <div class="metric-val" id="m-res">83%</div>
           <div class="metric-delta g" id="md-res">↑ from 79% prior period</div>
           <svg class="metric-spark" width="80" height="32" viewBox="0 0 80 32"><polyline points="0,28 11,26 22,27 33,24 44,22 55,20 66,16 77,10" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="metric-expand-hint">Click to expand</div>
         </div>
-        <div class="metric">
+        <div class="metric clickable" onclick="openChart('calls')">
           <div class="metric-label">Calls</div>
           <div class="metric-val" id="m-calls">2,418</div>
           <div class="metric-delta g" id="md-calls">↑ 6.3% vs prior period</div>
           <svg class="metric-spark" width="80" height="32" viewBox="0 0 80 32"><polyline points="0,22 11,20 22,24 33,18 44,21 55,16 66,14 77,12" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="metric-expand-hint">Click to expand</div>
         </div>
-        <div class="metric">
+        <div class="metric clickable" onclick="openChart('transfers')">
           <div class="metric-label">Transfers</div>
           <div class="metric-val" id="m-trans">411</div>
           <div class="metric-delta w" id="md-trans">17% · ↑ from 14% prior period</div>
           <svg class="metric-spark" width="80" height="32" viewBox="0 0 80 32"><polyline points="0,24 11,23 22,22 33,22 44,20 55,18 66,14 77,8" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="metric-expand-hint">Click to expand</div>
         </div>
-        <div class="metric">
+        <div class="metric clickable" onclick="openChart('aht')">
           <div class="metric-label">Avg Handle Time</div>
           <div class="metric-val" id="m-aht">3:12</div>
           <div class="metric-delta g" id="md-aht">↓ 8s vs prior period</div>
           <svg class="metric-spark" width="80" height="32" viewBox="0 0 80 32"><polyline points="0,10 11,12 22,14 33,16 44,18 55,20 66,22 77,24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="metric-expand-hint">Click to expand</div>
         </div>
       </div>
 
@@ -427,7 +527,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
           <div class="card-title" style="margin:0;">Handoff patterns</div>
           <div style="font-size:11px;color:var(--ink-3);" id="handoff-summary">411 total transfers</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s8);">
+        <div class="handoff-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s8);">
           <div class="esc-group" style="margin-bottom:0;">
             <div class="esc-group-label ok" style="margin-bottom:var(--s3);">Working as intended</div>
             <div class="esc-item clickable-pattern" onclick="filterTable('Channel Boundary')"><span class="esc-name">Channel boundary</span><div class="esc-track"><div class="esc-fill" style="width:44%;background:var(--blue)"></div></div><span class="esc-count" id="h-cb">181</span></div>
@@ -436,8 +536,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
           </div>
           <div class="esc-group" style="margin-bottom:0;">
             <div class="esc-group-label bad" style="margin-bottom:var(--s3);">Handoff errors</div>
-            <div class="esc-item clickable-pattern" onclick="filterTable('Repeated Request')"><span class="esc-name">Repeated request (3+ turns)</span><div class="esc-track"><div class="esc-fill" style="width:5%;background:var(--red)"></div></div><span class="esc-count" id="h-rr">22</span></div>
-            <div class="esc-item clickable-pattern" onclick="filterTable('Misunderstanding')"><span class="esc-name">Misunderstanding</span><div class="esc-track"><div class="esc-fill" style="width:2%;background:var(--red)"></div></div><span class="esc-count" id="h-mu">10</span></div>
+            <div class="esc-item clickable-pattern" onclick="filterTable('Repeated Request')"><span class="esc-name">Repeated request (3+ turns)</span><div class="esc-track"><div class="esc-fill" style="width:5%;background:var(--red)"></div></div><span class="esc-count" id="h-rr">22</span><div class="issue-tooltip-wrap" style="margin-left:4px"><div class="issue-info-icon" style="color:var(--red);"><i data-icon="info" data-size="15"></i></div><div class="issue-tooltip">Lower the transfer threshold to 2 requests — customers asking twice have already decided.</div></div></div>
+            <div class="esc-item clickable-pattern" onclick="filterTable('Misunderstanding')"><span class="esc-name">Misunderstanding</span><div class="esc-track"><div class="esc-fill" style="width:2%;background:var(--red)"></div></div><span class="esc-count" id="h-mu">10</span><div class="issue-tooltip-wrap" style="margin-left:4px"><div class="issue-info-icon" style="color:var(--red);"><i data-icon="info" data-size="15"></i></div><div class="issue-tooltip">Review the top 3 misclassified intents — most are "payoff" vs "balance" confusion.</div></div></div>
             <div class="esc-item" style="opacity:.4;pointer-events:none;"><span class="esc-name">Wrong information</span><div class="esc-track"><div class="esc-fill" style="width:0%;background:var(--red)"></div></div><span class="esc-count">0</span></div>
           </div>
         </div>
@@ -446,21 +546,23 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
       <div class="card" id="calls-section">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s3)">
           <div class="card-title" style="margin:0">Recent calls</div>
-          <div style="font-size:11px;color:var(--ink-3)" id="calls-count">Showing all · 8 of 2,418</div>
+          <div style="font-size:11px;color:var(--ink-3)" id="calls-count">Showing all · 12 of 2,418</div>
         </div>
         <div class="search-bar">
           <input type="text" class="search-input" placeholder="Search by call ID, outcome, or agent…" id="call-search" oninput="searchCalls(this.value)">
         </div>
         <div class="filter-chips" id="filter-chips"></div>
+        <div class="table-scroll">
         <table class="ct">
           <thead><tr><th>Call ID</th><th>Time</th><th>Duration</th><th>Outcome</th><th>Agent</th><th>Verified</th></tr></thead>
           <tbody id="calls-tbody"></tbody>
         </table>
+        </div>
         <div id="no-results" style="display:none;padding:var(--s6);text-align:center;font-size:12px;color:var(--ink-3)">No calls match this filter.</div>
         <div class="pagination">
-          <button class="pagination-btn" id="pg-prev" onclick="changePage(-1)" disabled>← Previous</button>
+          <button class="pagination-btn" id="pg-prev" onclick="changePage(-1)" disabled><i data-icon="arrow-left" data-size="12"></i> Previous</button>
           <span id="pg-label">Page 1 of 1</span>
-          <button class="pagination-btn" id="pg-next" onclick="changePage(1)">Next →</button>
+          <button class="pagination-btn" id="pg-next" onclick="changePage(1)">Next <i data-icon="arrow-right" data-size="12"></i></button>
         </div>
       </div>
     </div>
@@ -482,28 +584,86 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   </div>
 </div>
 
+<!-- Chart modal -->
+<div class="chart-modal-overlay" id="chart-modal" onclick="closeChart(event)">
+  <div class="chart-modal" onclick="event.stopPropagation()">
+    <div class="chart-modal-header">
+      <div class="chart-modal-title" id="chart-title">Resolution Rate</div>
+      <button class="chart-modal-close" onclick="closeChartModal()" aria-label="Close chart"><i data-icon="x" data-size="15"></i></button>
+    </div>
+    <div class="chart-modal-body">
+      <div style="position:relative">
+        <svg id="chart-svg" class="chart-svg" viewBox="0 0 580 220"></svg>
+        <div class="chart-tooltip" id="chart-tooltip"></div>
+      </div>
+      <div class="chart-summary" id="chart-summary"></div>
+    </div>
+  </div>
+</div>
+
 <!-- Panel -->
+<div class="panel-clip">
 <div class="overlay" id="overlay" onclick="closePanel()"></div>
 <div class="panel" id="panel">
   <div class="panel-hdr">
     <div><div class="panel-title" id="p-title">Call Detail</div><div class="panel-meta" id="p-meta"></div></div>
     <div style="display:flex;align-items:center;gap:var(--s2)">
-      <button class="panel-nav" id="p-prev" onclick="navigateCall(-1)">←</button>
+      <button class="panel-nav" id="p-prev" onclick="navigateCall(-1)" aria-label="Previous call"><i data-icon="caret-left" data-size="15"></i></button>
       <span class="panel-nav-count" id="p-nav-count">1 / 8</span>
-      <button class="panel-nav" id="p-next" onclick="navigateCall(1)">→</button>
-      <button class="panel-close" onclick="closePanel()">✕</button>
+      <button class="panel-nav" id="p-next" onclick="navigateCall(1)" aria-label="Next call"><i data-icon="caret-right" data-size="15"></i></button>
+      <button class="panel-close" onclick="closePanel()" aria-label="Close panel"><i data-icon="arrows-in-line-horizontal" data-size="15"></i></button>
     </div>
   </div>
   <div class="panel-body" id="panel-body"></div>
   <div class="panel-footer">
-    <button class="abtn primary">✓ Mark as Reviewed</button>
-    <button class="abtn">🔁 Add to Retraining Queue</button>
-    <button class="abtn">📋 Export Transcript</button>
-    <button class="abtn danger">⚠ Escalate to Domu Support</button>
+    <button class="abtn primary" id="review-btn" onclick="toggleReviewed()"><i data-icon="checks" data-size="15"></i> Mark as Reviewed</button>
+    <div class="reviewed-ts" id="reviewed-ts"></div>
+    <button class="abtn" onclick="alert('Added to retraining queue. Domu ML team will be notified.')"><i data-icon="arrows-clockwise" data-size="15"></i> Add to Retraining Queue</button>
+    <button class="abtn"><i data-icon="export" data-size="15"></i> Export Transcript</button>
+    <button class="abtn danger"><i data-icon="warning" data-size="15"></i> Escalate to Domu Support</button>
   </div>
 </div>
+</div><!-- /panel-clip -->
 
 <script>
+/* ── ICONS (Phosphor, inline SVG, viewBox 256) ── */
+const ICONS={
+  /* user-provided */
+  checks:'<path d="M149.61,85.71l-89.6,88a8,8,0,0,1-11.22,0L10.39,136a8,8,0,1,1,11.22-11.41L54.4,156.79l84-82.5a8,8,0,1,1,11.22,11.42Zm96.1-11.32a8,8,0,0,0-11.32-.1l-84,82.5-18.83-18.5a8,8,0,0,0-11.21,11.42l24.43,24a8,8,0,0,0,11.22,0l89.6-88A8,8,0,0,0,245.71,74.39Z"/>',
+  'arrows-clockwise':'<path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/>',
+  export:'<path d="M216,112v96a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V112A16,16,0,0,1,56,96H80a8,8,0,0,1,0,16H56v96H200V112H176a8,8,0,0,1,0-16h24A16,16,0,0,1,216,112ZM93.66,69.66,120,43.31V136a8,8,0,0,0,16,0V43.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,69.66Z"/>',
+  warning:'<path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"/>',
+  info:'<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"/>',
+  x:'<path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>',
+  'arrows-in-line-horizontal':'<path d="M136,40V216a8,8,0,0,1-16,0V40a8,8,0,0,1,16,0ZM69.66,90.34a8,8,0,0,0-11.32,11.32L76.69,120H16a8,8,0,0,0,0,16H76.69L58.34,154.34a8,8,0,0,0,11.32,11.32l32-32a8,8,0,0,0,0-11.32ZM240,120H179.31l18.35-18.34a8,8,0,0,0-11.32-11.32l-32,32a8,8,0,0,0,0,11.32l32,32a8,8,0,0,0,11.32-11.32L179.31,136H240a8,8,0,0,0,0-16Z"/>',
+  'flag-banner':'<path d="M238.76,51.73A8,8,0,0,0,232,48H40a8,8,0,0,0-5.66,13.66L76.69,104,34.34,146.34A8,8,0,0,0,40,160H173.62l-28.84,60.56a8,8,0,1,0,14.44,6.88l80-168A8,8,0,0,0,238.76,51.73ZM181.23,144H59.31l34.35-34.34a8,8,0,0,0,0-11.32L59.31,64h160Z"/>',
+  'check-square':'<path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>',
+  'arrow-down':'<path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/>',
+  'arrow-up':'<path d="M205.66,117.66a8,8,0,0,1-11.32,0L136,59.31V216a8,8,0,0,1-16,0V59.31L61.66,117.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0l72,72A8,8,0,0,1,205.66,117.66Z"/>',
+  'magnifying-glass':'<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/>',
+  'trend-up':'<path d="M240,56v64a8,8,0,0,1-16,0V75.31l-82.34,82.35a8,8,0,0,1-11.32,0L96,123.31,29.66,189.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0L136,140.69,212.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,240,56Z"/>',
+  /* interim Phosphor-regular (swap for your exports anytime) */
+  'caret-left':'<path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>',
+  'caret-right':'<path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>',
+  'arrow-left':'<path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"/>',
+  'arrow-right':'<path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/>',
+  play:'<path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.21-.4A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40.05l143.83,87.95Z"/>',
+  pause:'<path d="M200,32H168a16,16,0,0,0-16,16V208a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm0,176H168V48h32ZM88,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H88a16,16,0,0,0,16-16V48A16,16,0,0,0,88,32Zm0,176H56V48H88Z"/>',
+  square:'<path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208Z"/>',
+  'trend-down':'<path d="M240,136v64a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h44.69L136,115.31l-34.34,34.35a8,8,0,0,1-11.32,0l-72-72A8,8,0,0,1,29.66,66.34L96,132.69l34.34-34.35a8,8,0,0,1,11.32,0L224,180.69V136a8,8,0,0,1,16,0Z"/>',
+  check:'<path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/>',
+  'file-text':'<path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-56a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,160Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,192Z"/>'
+};
+function ic(name,size=16){return '<svg class="ic" width="'+size+'" height="'+size+'" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">'+(ICONS[name]||'')+'</svg>';}
+function hydrateIcons(root){(root||document).querySelectorAll('i[data-icon]').forEach(el=>{el.outerHTML=ic(el.dataset.icon,+el.dataset.size||16);});}
+
+/* ── ACCESSIBILITY ── */
+function makeA11y(root){(root||document).querySelectorAll('.fn,.clickable-pattern,.chip,.metric.clickable,#calls-tbody tr').forEach(el=>{if(!el.hasAttribute('role')){el.setAttribute('role','button');el.setAttribute('tabindex','0');}});}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closePanel();if(typeof closeDateModal==='function')closeDateModal();if(typeof closeChartModal==='function')closeChartModal();return;}
+  if(e.key==='Enter'||e.key===' '){const t=e.target;if(t.getAttribute&&t.getAttribute('role')==='button'&&t.tagName!=='BUTTON'){e.preventDefault();t.click();}}
+});
+
 /* ── FLOW ── */
 let activeFlowFilter='all';
 function filterFlow(g){
@@ -619,7 +779,7 @@ function selectNode(id,e){
   </div>`;
   if(d.compliance){
     h+=`<div class="card" style="background:var(--amber-bg);border-color:var(--amber-border);">
-      <div class="card-title" style="color:var(--amber);">⚠ Compliance Rule</div>
+      <div class="card-title" style="color:var(--amber);display:flex;align-items:center;gap:6px;">${ic('warning',13)} Compliance Rule</div>
       <div style="font-size:12px;color:var(--ink-2);line-height:1.7">${d.compliance}</div>
     </div>`;
   }
@@ -627,6 +787,8 @@ function selectNode(id,e){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
+  hydrateIcons();
+  makeA11y();
   document.querySelector('.legend-btn[data-filter="all"]').classList.add('active');
   const v=document.querySelector('.fn.sel');
   if(v)selectNode('verify',{currentTarget:v});
@@ -639,9 +801,13 @@ const calls=[
   {id:'CLL8f432cc1',time:'14:25',dur:'3m 12s',intent:'Payment',outcome:'Resolved',oc:'tag-green',verified:true,flags:0,key:'c3',agent:'—'},
   {id:'CLL4f901de2',time:'14:18',dur:'6m 22s',intent:'Balance',outcome:'Repeated Request',oc:'tag-red',verified:true,flags:2,key:'c4',agent:'A. Kim'},
   {id:'CLL1a234bc5',time:'14:15',dur:'1m 48s',intent:'Balance',outcome:'Resolved',oc:'tag-green',verified:true,flags:0,key:'c3',agent:'—'},
-  {id:'CLL7d891ef2',time:'14:11',dur:'0m 52s',intent:'Auth',outcome:'3-Strike Lock',oc:'tag-red',verified:false,flags:2,key:'c1',agent:'S. Wong'},
-  {id:'CLL5c678gh9',time:'14:08',dur:'3m 30s',intent:'Arrangement',outcome:'Resolved',oc:'tag-green',verified:true,flags:0,key:'c3',agent:'—'},
+  {id:'CLL7d891ef2',time:'14:11',dur:'0m 52s',intent:'Auth',outcome:'3-Strike Lock',oc:'tag-red',verified:false,flags:2,key:'c5',agent:'S. Wong'},
+  {id:'CLL5c678gh9',time:'14:08',dur:'3m 30s',intent:'Arrangement',outcome:'Resolved',oc:'tag-green',verified:true,flags:0,key:'c6',agent:'—'},
   {id:'CLL3b456ij1',time:'14:04',dur:'4m 18s',intent:'Payoff',outcome:'Contract Ambiguity',oc:'tag-blue',verified:true,flags:0,key:'c2',agent:'M. Torres'},
+  {id:'CLL6e102kl3',time:'13:58',dur:'2m 14s',intent:'FAQ',outcome:'Resolved',oc:'tag-green',verified:true,flags:0,key:'c7',agent:'—'},
+  {id:'CLL0a493mn5',time:'13:51',dur:'0m 38s',intent:'Fraud',outcome:'Fraud Transfer',oc:'tag-red',verified:false,flags:1,key:'c8',agent:'Fraud Team'},
+  {id:'CLL8b721pq7',time:'13:44',dur:'4m 05s',intent:'Payment',outcome:'Resolved',oc:'tag-green',verified:true,flags:0,key:'c3',agent:'—'},
+  {id:'CLL2d934rs9',time:'13:39',dur:'2m 58s',intent:'Balance',outcome:'Misunderstanding',oc:'tag-red',verified:true,flags:1,key:'c9',agent:'L. Chen'},
 ];
 
 const callData={
@@ -721,6 +887,92 @@ const callData={
       {stage:'Exit · Repeated Request Failure',stageClass:'exit-bad'},
       {t:'3:50',s:'Transfer · finally honored',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"Of course, let me connect you with one of our team members."'}]},
       {t:'6:22',s:'Call transferred',dot:'var(--blue)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'Transferred to agent. Duration: 6m 22s. 3 human requests before transfer.'}]},
+    ]},
+  c5:{title:'Authentication Failure · 3-Strike Lock',meta:'0m 52s · Locked & Transferred',
+    verdict:{type:'bad',text:'Caller failed identity verification 3 times on the SSN step. Hannah correctly locked the interaction and transferred. Audit log created. This may indicate a wrong-number caller or a social engineering attempt.'},
+    compliance:[{s:'Full name collected',p:true},{s:'Date of birth verified',p:true},{s:'SSN last 4 — 3 failed attempts',p:false},{s:'Zip code — not reached',p:false}],
+    handoff:null,
+    timeline:[
+      {stage:'Greeting + Disclosure',stageClass:''},
+      {t:'0:01',s:'Greeting',dot:'var(--green)',sp:'HANNAH',lines:[{c:'bot',tx:'"Thank you for calling. My name is Hannah. How can I help you today?"'}]},
+      {t:'0:10',s:'Customer intent',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"I need to check my account."'}]},
+      {stage:'Identity Verification',stageClass:''},
+      {t:'0:14',s:'Verification begins',dot:'var(--amber)',sp:'HANNAH',comp:true,lines:[{c:'bot',tx:'"Let me verify your identity."'},{c:'sys',tx:'Name ✓ → DOB ✓'}]},
+      {t:'0:32',s:'SSN attempt 1',dot:'var(--red)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'SSN last 4 — mismatch. Attempt 1 of 3.'}]},
+      {t:'0:38',s:'SSN attempt 2',dot:'var(--red)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'SSN last 4 — mismatch. Attempt 2 of 3.'}]},
+      {t:'0:44',s:'SSN attempt 3',dot:'var(--red)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'SSN last 4 — mismatch. Attempt 3 of 3. LOCKED.'}]},
+      {stage:'Exit · Auth Failure Lock',stageClass:'exit-bad'},
+      {t:'0:46',s:'Lock + transfer',dot:'var(--red)',sp:'HANNAH',flagged:true,lines:[{c:'bot',tx:'"For your security, I\'m unable to verify your identity. Let me connect you with a team member who can assist."'}],flag:'3 failed SSN attempts. Audit log created automatically.'},
+      {t:'0:52',s:'Call transferred',dot:'var(--blue)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'Transferred. Auth locked. Audit entry: AUTH-FAIL-2026-06031411. Duration: 0m 52s.'}]},
+    ]},
+  c6:{title:'Resolved · Payment Arrangement',meta:'3m 30s · Resolved',
+    verdict:{type:'ok',text:'Hannah verified identity, checked deferral eligibility, confirmed a 14-day extension, and provided the new due date. Clean resolution with no issues.'},
+    compliance:[{s:'Full name collected',p:true},{s:'Date of birth verified',p:true},{s:'SSN last 4 collected',p:true},{s:'Zip code verified',p:true}],
+    handoff:null,
+    timeline:[
+      {stage:'Greeting + Disclosure',stageClass:''},
+      {t:'0:01',s:'Greeting',dot:'var(--green)',sp:'HANNAH',lines:[{c:'bot',tx:'"Thank you for calling. My name is Hannah. How can I help you today?"'}]},
+      {t:'0:14',s:'Customer intent',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"I won\'t be able to make my payment on time this month. Can I push it back?"'}]},
+      {stage:'Identity Verification',stageClass:''},
+      {t:'0:20',s:'4-step verification',dot:'var(--amber)',sp:'HANNAH',comp:true,lines:[{c:'bot',tx:'"I can help with that. Let me verify your identity."'},{c:'sys',tx:'Name ✓ → DOB ✓ → SSN last 4 ✓ → Zip code ✓'}]},
+      {t:'1:04',s:'Identity verified ✓',dot:'var(--green)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'All 4 steps completed.'}]},
+      {stage:'Payment Arrangement',stageClass:''},
+      {t:'1:08',s:'Eligibility check',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"Let me check your eligibility for a payment deferral."'},{c:'sys',tx:'Eligible: no deferral in past 6 months.'}],prov:'Source: Core Banking API · Deferral Eligibility'},
+      {t:'1:42',s:'Arrangement offered',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"You\'re eligible. I can defer your payment of $189.50 by up to 30 days. How many days would you like?"'}]},
+      {t:'2:10',s:'Customer chooses',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"Two weeks would be perfect."'}]},
+      {t:'2:16',s:'Confirmation',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"Done. Your new due date is June 28, 2026. You\'ll receive an SMS confirmation shortly."'}]},
+      {stage:'Exit · Resolved',stageClass:'exit-ok'},
+      {t:'3:30',s:'Call ended',dot:'var(--green)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'Arrangement confirmed. New due: June 28. SMS sent. Duration: 3m 30s.'}]},
+    ]},
+  c7:{title:'Resolved · FAQ',meta:'2m 14s · Resolved',
+    verdict:{type:'ok',text:'Customer asked about branch hours. Hannah answered from the knowledge base without needing account access. Quick and clean — no verification needed for non-account questions.'},
+    compliance:[{s:'Full name collected',p:true},{s:'Date of birth verified',p:true},{s:'SSN last 4 collected',p:true},{s:'Zip code verified',p:true}],
+    handoff:null,
+    timeline:[
+      {stage:'Greeting + Disclosure',stageClass:''},
+      {t:'0:01',s:'Greeting',dot:'var(--green)',sp:'HANNAH',lines:[{c:'bot',tx:'"Thank you for calling. My name is Hannah. How can I help you today?"'}]},
+      {t:'0:12',s:'Customer intent',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"What are your branch hours on Saturday?"'}]},
+      {stage:'FAQ Response',stageClass:''},
+      {t:'0:18',s:'Knowledge base lookup',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"Our branches are open Saturday from 9 AM to 1 PM. Would you like the address of the nearest branch?"'}],prov:'Source: Knowledge Base · Branch Info (last updated May 28, 2026)'},
+      {t:'0:38',s:'Follow-up',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"Yes please, the one on Main Street."'}]},
+      {t:'0:44',s:'Branch details',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"The Main Street branch is at 420 Main St, Suite 100. Open Monday–Friday 8:30 AM to 5 PM, Saturday 9 AM to 1 PM."'}]},
+      {t:'1:12',s:'Additional question',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"And can I make a loan payment there?"'}]},
+      {t:'1:18',s:'FAQ response',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"Yes, you can make loan and lease payments at any branch. You\'ll need a valid photo ID."'}],prov:'Source: Knowledge Base · Payment Methods'},
+      {stage:'Exit · Resolved',stageClass:'exit-ok'},
+      {t:'2:14',s:'Call ended',dot:'var(--green)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'FAQ resolved. No account access needed. Duration: 2m 14s.'}]},
+    ]},
+  c8:{title:'Fraud Trigger · Immediate Transfer',meta:'0m 38s · Transferred',
+    verdict:{type:'ok',text:'Fraud trigger word detected ("unauthorized"). Hannah correctly bypassed the standard verification flow and transferred immediately to the fraud team. This is correct behavior — speed is prioritized over authentication for fraud reports.'},
+    compliance:[{s:'Full name — skipped (fraud protocol)',p:false},{s:'Date of birth — skipped',p:false},{s:'SSN last 4 — skipped',p:false},{s:'Zip code — skipped',p:false}],
+    handoff:{title:'Handoff Package',rows:[{k:'Fraud protocol',v:'Activated',p:true},{k:'Trigger word',v:'"unauthorized"',p:true},{k:'Verification',v:'Skipped (speed priority)',p:true},{k:'Routed to',v:'Fraud team queue',p:true}]},
+    timeline:[
+      {stage:'Greeting + Disclosure',stageClass:''},
+      {t:'0:01',s:'Greeting',dot:'var(--green)',sp:'HANNAH',lines:[{c:'bot',tx:'"Thank you for calling. My name is Hannah. How can I help you today?"'}]},
+      {t:'0:12',s:'Fraud trigger detected',dot:'var(--red)',sp:'CUSTOMER',lines:[{c:'',tx:'"There\'s an unauthorized charge on my account and I need to report it."'}]},
+      {stage:'Exit · Fraud Protocol',stageClass:'exit-transfer'},
+      {t:'0:18',s:'Fraud protocol activated',dot:'var(--red)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'Trigger word: "unauthorized". Fraud protocol activated. Verification bypassed.'}]},
+      {t:'0:22',s:'Immediate transfer',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"I\'m connecting you directly with our fraud team right away. They\'ll be able to help you immediately."'}]},
+      {t:'0:38',s:'Call transferred',dot:'var(--blue)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'Transferred to fraud team. Duration: 0m 38s. Fraud flag logged.'}]},
+    ]},
+  c9:{title:'Misunderstanding · Intent Misclassified',meta:'2m 58s · Transferred',
+    verdict:{type:'bad',text:'Customer asked about their payoff amount but Hannah classified it as a general balance inquiry and provided the wrong data first. After the customer corrected her, Hannah re-routed but wasted nearly a minute on the wrong path. Intent classifier needs retraining on "payoff" vs "balance" disambiguation.'},
+    compliance:[{s:'Full name collected',p:true},{s:'Date of birth verified',p:true},{s:'SSN last 4 collected',p:true},{s:'Zip code verified',p:true}],
+    handoff:{title:'Handoff Package',rows:[{k:'Auth status',v:'Verified',p:true},{k:'Initial classification',v:'"Balance" (wrong)',p:false},{k:'Correct intent',v:'"Payoff inquiry"',p:true},{k:'Context to agent',v:'Partial',p:false}]},
+    timeline:[
+      {stage:'Greeting + Disclosure',stageClass:''},
+      {t:'0:01',s:'Greeting',dot:'var(--green)',sp:'HANNAH',lines:[{c:'bot',tx:'"Thank you for calling. My name is Hannah. How can I help you today?"'}]},
+      {t:'0:11',s:'Customer intent',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"Yeah hi, I want to know what I owe to pay this thing off."'}]},
+      {stage:'Identity Verification',stageClass:''},
+      {t:'0:16',s:'4-step verification',dot:'var(--amber)',sp:'HANNAH',comp:true,lines:[{c:'bot',tx:'"I can help with that."'},{c:'sys',tx:'Name ✓ → DOB ✓ → SSN last 4 ✓ → Zip code ✓'}]},
+      {t:'1:00',s:'Identity verified ✓',dot:'var(--green)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'All 4 steps completed.'}]},
+      {stage:'Balance (Misclassified)',stageClass:''},
+      {t:'1:04',s:'Wrong data provided',dot:'var(--red)',sp:'HANNAH',flagged:true,lines:[{c:'bot',tx:'"Your current balance due is $187.22, with the next payment due May 28th."'}],flag:'Intent misclassified as "balance" — customer asked for payoff amount, not current balance.'},
+      {t:'1:22',s:'Customer corrects',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"No, I don\'t mean the monthly payment. I want to pay the whole thing off. The total payoff."'}]},
+      {t:'1:30',s:'Hannah re-routes',dot:'var(--amber)',sp:'HANNAH',lines:[{c:'bot',tx:'"I apologize for the confusion. Your total payoff amount is $1,842.60."'}],prov:'Source: Core Banking API · Payoff Calculator'},
+      {t:'1:52',s:'Customer disputes',dot:'var(--ink)',sp:'CUSTOMER',lines:[{c:'',tx:'"That doesn\'t match what I was told when I signed up."'}]},
+      {stage:'Exit · Misunderstanding → Contract Ambiguity',stageClass:'exit-bad'},
+      {t:'2:02',s:'Transfer initiated',dot:'var(--blue)',sp:'HANNAH',lines:[{c:'bot',tx:'"I understand. Let me connect you with someone who can review your contract terms."'}]},
+      {t:'2:58',s:'Call transferred',dot:'var(--blue)',sp:'SYSTEM',sys:true,lines:[{c:'sys',tx:'Transferred. Initial misclassification caused ~50s delay. Duration: 2m 58s.'}]},
     ]}
 };
 
@@ -735,8 +987,9 @@ function buildFilterChips(){
   let h='';
   outcomes.forEach(o=>{const n=calls.filter(c=>c.outcome===o).length;h+=`<span class="chip" onclick="filterTable('${o}')">${o} <span style="opacity:.6">${n}</span></span>`;});
   h+=`<span class="chip" onclick="filterVerified()" id="chip-verifail">Verification Failed</span>`;
-  h+=`<span class="chip chip-clear" onclick="clearFilters()" style="display:none" id="chip-clear">✕ Clear filter</span>`;
+  h+=`<span class="chip chip-clear" onclick="clearFilters()" style="display:none;align-items:center;gap:5px;" id="chip-clear">${ic('x',12)} Clear filter</span>`;
   ct.innerHTML=h;
+  makeA11y();
 }
 
 function searchCalls(q){searchQuery=q.toLowerCase().trim();currentPage=0;applyFilters();}
@@ -790,8 +1043,9 @@ function renderCalls(){
       <td style="font-family:var(--mono);color:var(--ink-2)">${c.dur}</td>
       <td><span class="tag ${c.oc}">${c.outcome}</span></td>
       <td style="color:var(--ink-2);font-size:11px">${c.agent}</td>
-      <td style="font-size:12px;color:${c.verified?'var(--green)':'var(--red)'}">${c.verified?'✓ All 4':'✗ Failed'}</td>
+      <td style="font-size:12px;color:${c.verified?'var(--green)':'var(--red)'}"><span style="display:inline-flex;align-items:center;gap:5px;">${c.verified?ic('checks',13)+' All 4':ic('x',13)+' Failed'}</span></td>
     </tr>`).join('');
+  makeA11y();
   updatePagination();
 }
 function updatePagination(){
@@ -821,16 +1075,28 @@ function renderPanel(){
   document.getElementById('p-title').textContent=d.title;
   document.getElementById('p-meta').textContent=c.id+' · '+d.meta+(c.agent&&c.agent!=='—'?' · Agent: '+c.agent:'');
 
+  // Reset reviewed state
+  const rb=document.getElementById('review-btn');
+  rb.textContent='✓ Mark as Reviewed';rb.classList.remove('reviewed');rb.classList.add('primary');
+  document.getElementById('reviewed-ts').classList.remove('show');
+
   let h=`<div class="verdict ${d.verdict.type}">${d.verdict.text}</div>`;
+
+  // Audio player
+  const durParts=c.dur.match(/(\d+)m\s*(\d+)s/);
+  const totalSec=durParts?(parseInt(durParts[1])*60+parseInt(durParts[2])):180;
+  const durStr=c.dur.replace(/\s/g,'');
+  h+=buildAudioPlayer(totalSec,durStr);
+
   h+=`<div class="compliance-card">
     <div class="compliance-title">Identity Verification</div>
-    ${d.compliance.map(ci=>`<div class="compliance-row"><span class="c-check ${ci.p?'c-pass':'c-fail'}">${ci.p?'☑':'☐'}</span><span>${ci.s}</span></div>`).join('')}
-    <div class="compliance-footer">✓ All 4 steps completed before any account data was shared</div>
+    ${d.compliance.map(ci=>`<div class="compliance-row"><span class="c-check ${ci.p?'c-pass':'c-fail'}" style="display:inline-flex;">${ci.p?ic('check-square',14):ic('square',14)}</span><span>${ci.s}</span></div>`).join('')}
+    <div class="compliance-footer" style="display:flex;align-items:center;gap:6px;">${d.compliance.every(ci=>ci.p)?ic('checks',13)+' All 4 steps completed before any account data was shared':ic('x',13)+' Verification incomplete — see details above'}</div>
   </div>`;
   if(d.handoff){
     h+=`<div class="handoff-card">
       <div class="handoff-title">${d.handoff.title}</div>
-      ${d.handoff.rows.map(r=>`<div class="hrow"><span class="hrow-k">${r.k}</span><span class="hrow-v ${r.p?'p':'f'}">${r.v} ${r.p?'✓':'✗'}</span></div>`).join('')}
+      ${d.handoff.rows.map(r=>`<div class="hrow"><span class="hrow-k">${r.k}</span><span class="hrow-v ${r.p?'p':'f'}" style="display:inline-flex;align-items:center;gap:4px;">${r.v} ${r.p?ic('check',12):ic('x',12)}</span></div>`).join('')}
     </div>`;
   }
   h+=`<div class="tl-section-title">Call Timeline</div>`;
@@ -838,11 +1104,159 @@ function renderPanel(){
     if(t.stage){h+=`<div class="tl-stage-divider"><div class="tl-stage-divider-line"></div><div class="tl-stage-divider-label ${t.stageClass}">${t.stage}</div><div class="tl-stage-divider-line"></div></div>`;return;}
     if(t.sys){h+=`<div class="tl-item"><div class="tl-dot-wrap"><div class="tl-dot" style="background:${t.dot}"></div></div><div class="tl-card sys"><div class="tl-meta"><span class="tl-time">${t.t}</span><span class="tl-stage" style="color:var(--ink-3)">${t.s}</span></div>${t.lines.map(l=>`<div class="tl-text sys">${l.tx}</div>`).join('')}</div></div>`;
     }else{const cc=t.flagged?' flagged':t.comp?' comp':'';
-      h+=`<div class="tl-item"><div class="tl-dot-wrap"><div class="tl-dot" style="background:${t.dot}"></div></div><div class="tl-card${cc}"><div class="tl-meta"><span class="tl-time">${t.t}</span><span class="tl-stage">${t.s}</span><span class="tl-spk">${t.sp}</span></div>${t.lines.map(l=>`<div class="tl-text${l.c==='bot'?' bot':l.c==='sys'?' sys':''}">${l.tx}</div>`).join('')}${t.prov?`<div class="tl-prov">📋 ${t.prov}</div>`:''}${t.flag?`<div class="tl-flag">🚩 ${t.flag}</div>`:''}
+      h+=`<div class="tl-item"><div class="tl-dot-wrap"><div class="tl-dot" style="background:${t.dot}"></div></div><div class="tl-card${cc}"><div class="tl-meta"><span class="tl-time">${t.t}</span><span class="tl-stage">${t.s}</span><span class="tl-spk">${t.sp}</span></div>${t.lines.map(l=>`<div class="tl-text${l.c==='bot'?' bot':l.c==='sys'?' sys':''}">${l.tx}</div>`).join('')}${t.prov?`<div class="tl-prov">${ic('file-text',12)} ${t.prov}</div>`:''}${t.flag?`<div class="tl-flag">${ic('flag-banner',12)} ${t.flag}</div>`:''}
       </div></div>`;}
   });
   document.getElementById('panel-body').innerHTML=h;
   document.getElementById('panel').scrollTop=0;
+}
+
+/* ── AUDIO PLAYER ── */
+function buildAudioPlayer(totalSec,durStr){
+  const barCount=60;
+  const seed=totalSec*7;
+  let bars='';
+  for(let i=0;i<barCount;i++){
+    const h=6+Math.abs(Math.sin(seed+i*0.7)*18)+Math.abs(Math.cos(seed+i*1.3)*8);
+    const played=i<barCount*0.0?' played':'';
+    bars+=`<div class="audio-bar${played}" style="height:${h}px"></div>`;
+  }
+  return `<div class="audio-player">
+    <button class="audio-play-btn" onclick="togglePlay(this)" title="Play recording" data-state="paused">${ic('play',13)}</button>
+    <div class="audio-wave-wrap">
+      <div class="audio-waveform" onclick="seekAudio(event,this)">${bars}</div>
+      <div class="audio-time-row"><span>0:00</span><span>${durStr}</span></div>
+    </div>
+  </div>`;
+}
+let playInterval=null;
+function togglePlay(btn){
+  const bars=btn.parentElement.querySelectorAll('.audio-bar');
+  if(btn.dataset.state!=='playing'){
+    btn.dataset.state='playing';btn.innerHTML=ic('pause',13);
+    let idx=0;
+    bars.forEach(b=>b.classList.remove('played'));
+    playInterval=setInterval(()=>{
+      if(idx<bars.length){bars[idx].classList.add('played');idx++;}
+      else{clearInterval(playInterval);btn.dataset.state='paused';btn.innerHTML=ic('play',13);}
+    },80);
+  }else{
+    btn.dataset.state='paused';btn.innerHTML=ic('play',13);clearInterval(playInterval);
+  }
+}
+function seekAudio(e,wrap){
+  const rect=wrap.getBoundingClientRect();
+  const pct=(e.clientX-rect.left)/rect.width;
+  const bars=wrap.querySelectorAll('.audio-bar');
+  const target=Math.floor(pct*bars.length);
+  bars.forEach((b,i)=>i<target?b.classList.add('played'):b.classList.remove('played'));
+}
+
+/* ── CHART MODAL ── */
+const chartConfigs={
+  resolution:{
+    title:'Resolution Rate — Last 14 Days',color:'var(--green)',suffix:'%',
+    data:[{d:'May 21',v:78},{d:'May 22',v:79},{d:'May 23',v:77},{d:'May 24',v:80},{d:'May 25',v:82},{d:'May 26',v:79},{d:'May 27',v:81},{d:'May 28',v:80},{d:'May 29',v:82},{d:'May 30',v:81},{d:'May 31',v:84},{d:'Jun 1',v:82},{d:'Jun 2',v:81},{d:'Jun 3',v:83}],
+    summary:[{l:'Current',v:'83%'},{l:'14-day avg',v:'80.6%'},{l:'Peak',v:'84% (May 31)'},{l:'Low',v:'77% (May 23)'}]
+  },
+  calls:{
+    title:'Daily Call Volume — Last 14 Days',color:'var(--blue)',suffix:'',
+    data:[{d:'May 21',v:2180},{d:'May 22',v:2245},{d:'May 23',v:2310},{d:'May 24',v:1840},{d:'May 25',v:1520},{d:'May 26',v:2290},{d:'May 27',v:2350},{d:'May 28',v:2280},{d:'May 29',v:2410},{d:'May 30',v:2380},{d:'May 31',v:1920},{d:'Jun 1',v:1580},{d:'Jun 2',v:2340},{d:'Jun 3',v:2418}],
+    summary:[{l:'Today',v:'2,418'},{l:'14-day avg',v:'2,148'},{l:'Peak',v:'2,418 (today)'},{l:'Weekday avg',v:'2,328'}]
+  },
+  transfers:{
+    title:'Transfer Rate — Last 14 Days',color:'var(--amber)',suffix:'%',
+    data:[{d:'May 21',v:14},{d:'May 22',v:15},{d:'May 23',v:16},{d:'May 24',v:15},{d:'May 25',v:13},{d:'May 26',v:14},{d:'May 27',v:15},{d:'May 28',v:14},{d:'May 29',v:16},{d:'May 30',v:15},{d:'May 31',v:14},{d:'Jun 1',v:15},{d:'Jun 2',v:16},{d:'Jun 3',v:17}],
+    summary:[{l:'Today',v:'17%'},{l:'14-day avg',v:'15.1%'},{l:'Baseline',v:'14%'},{l:'Trend',v:'↑ Slightly up'}]
+  },
+  aht:{
+    title:'Avg Handle Time — Last 14 Days',color:'var(--green)',suffix:'',
+    data:[{d:'May 21',v:228},{d:'May 22',v:224},{d:'May 23',v:220},{d:'May 24',v:216},{d:'May 25',v:218},{d:'May 26',v:212},{d:'May 27',v:208},{d:'May 28',v:204},{d:'May 29',v:200},{d:'May 30',v:198},{d:'May 31',v:196},{d:'Jun 1',v:194},{d:'Jun 2',v:194},{d:'Jun 3',v:192}],
+    summary:[{l:'Today',v:'3:12'},{l:'14-day avg',v:'3:24'},{l:'Best',v:'3:12 (today)'},{l:'Trend',v:'↓ Improving'}]
+  }
+};
+function openChart(key){
+  const cfg=chartConfigs[key];if(!cfg)return;
+  cfg.key=key;
+  document.getElementById('chart-title').textContent=cfg.title;
+  drawChart(cfg);
+  document.getElementById('chart-summary').innerHTML=cfg.summary.map(s=>`<div class="chart-summary-item"><strong>${s.v}</strong> ${s.l}</div>`).join('');
+  document.getElementById('chart-modal').classList.add('open');
+}
+function closeChart(e){if(e.target===e.currentTarget)document.getElementById('chart-modal').classList.remove('open');}
+function closeChartModal(){document.getElementById('chart-modal').classList.remove('open');}
+
+function drawChart(cfg){
+  const svg=document.getElementById('chart-svg');
+  const data=cfg.data;
+  const W=580,H=220,pad={t:20,r:20,b:36,l:44};
+  const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+  const vals=data.map(d=>d.v);
+  const minV=Math.min(...vals)*0.95,maxV=Math.max(...vals)*1.02;
+  const range=maxV-minV||1;
+  const xStep=cw/(data.length-1);
+
+  let s='';
+  // Grid lines
+  const gridCount=4;
+  for(let i=0;i<=gridCount;i++){
+    const y=pad.t+ch-(ch/gridCount)*i;
+    const val=minV+(range/gridCount)*i;
+    const label=cfg.suffix==='%'?Math.round(val)+'%':cfg.key==='aht'?Math.floor(val/60)+':'+String(Math.round(val%60)).padStart(2,'0'):Math.round(val).toLocaleString();
+    s+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" class="chart-grid-line"/>`;
+    s+=`<text x="${pad.l-8}" y="${y+3}" text-anchor="end" class="chart-axis-label">${label}</text>`;
+  }
+  // X labels
+  data.forEach((d,i)=>{
+    if(i%2===0||i===data.length-1){
+      const x=pad.l+i*xStep;
+      s+=`<text x="${x}" y="${H-8}" text-anchor="middle" class="chart-axis-label">${d.d}</text>`;
+    }
+  });
+  // Line
+  const pts=data.map((d,i)=>{
+    const x=pad.l+i*xStep;
+    const y=pad.t+ch-((d.v-minV)/range)*ch;
+    return `${x},${y}`;
+  }).join(' ');
+  // Area fill
+  const firstX=pad.l,lastX=pad.l+(data.length-1)*xStep;
+  s+=`<polygon points="${firstX},${pad.t+ch} ${pts} ${lastX},${pad.t+ch}" fill="${cfg.color}" opacity="0.06"/>`;
+  s+=`<polyline points="${pts}" class="chart-line" stroke="${cfg.color}"/>`;
+  // Dots
+  data.forEach((d,i)=>{
+    const x=pad.l+i*xStep;
+    const y=pad.t+ch-((d.v-minV)/range)*ch;
+    const label=cfg.suffix==='%'?d.v+'%':cfg.suffix===''&&cfg.key==='aht'?Math.floor(d.v/60)+':'+String(Math.round(d.v%60)).padStart(2,'0'):d.v.toLocaleString();
+    s+=`<circle cx="${x}" cy="${y}" class="chart-dot" stroke="${cfg.color}" onmouseenter="showChartTip(evt,'${d.d}: ${label}')" onmouseleave="hideChartTip()"/>`;
+  });
+  svg.innerHTML=s;
+}
+function showChartTip(e,text){
+  const t=document.getElementById('chart-tooltip');
+  const rect=e.target.closest('.chart-modal-body').getBoundingClientRect();
+  t.textContent=text;t.style.opacity='1';
+  t.style.left=(e.clientX-rect.left-30)+'px';
+  t.style.top=(e.clientY-rect.top-34)+'px';
+}
+function hideChartTip(){document.getElementById('chart-tooltip').style.opacity='0';}
+
+/* ── REVIEWED TOGGLE ── */
+const reviewedCalls=new Set();
+function toggleReviewed(){
+  const c=filteredCalls[currentCallIndex];if(!c)return;
+  const btn=document.getElementById('review-btn');
+  const ts=document.getElementById('reviewed-ts');
+  if(reviewedCalls.has(c.id)){
+    reviewedCalls.delete(c.id);
+    btn.innerHTML=ic('checks',15)+' Mark as Reviewed';btn.classList.remove('reviewed');btn.classList.add('primary');
+    ts.classList.remove('show');
+  }else{
+    reviewedCalls.add(c.id);
+    btn.innerHTML=ic('checks',15)+' Reviewed';btn.classList.add('reviewed');btn.classList.remove('primary');
+    const now=new Date();const timeStr=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    ts.textContent='Reviewed just now · '+timeStr;ts.classList.add('show');
+  }
 }
 
 buildFilterChips();renderCalls();

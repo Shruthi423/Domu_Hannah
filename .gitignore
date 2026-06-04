@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Raw font sources (only the self-hosted .woff2 are committed)
+fonts/*.otf
+fonts/*.ttf
+fonts/*.ttc
+fonts/*.dfont
+
+# Design source images / scratch
+_ (4).jpeg
+domu-v10.html
